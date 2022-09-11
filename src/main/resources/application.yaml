@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: method_route
+          uri: https://example.org
+          predicates:
+            - Method=GET,POST,PUT,DELETE,OPTIONS
+            - Path=/v1/w/**
