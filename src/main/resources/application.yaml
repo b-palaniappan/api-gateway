@@ -7,3 +7,17 @@ spring:
           predicates:
             - Method=GET,POST,PUT,DELETE,OPTIONS
             - Path=/v1/w/**
+          filters:
+            - RequestHeaderSize=1024B
+        - id: user_api_route
+          uri: http://localhost:8080/v1/users
+          predicates:
+            - Method=GET,POST,PUT,DELETE,OPTIONS
+            - Path=/v1/users/**
+          filters:
+            - RequestHeaderSize=1024B
+      default-filters:
+        - SecureHeaders
+        - SetResponseHeader=X-Response-Server, Blue
+server:
+  port: 80
