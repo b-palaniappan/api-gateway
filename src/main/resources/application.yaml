@@ -16,8 +16,22 @@ spring:
             - Path=/v1/users/**
           filters:
             - RequestHeaderSize=1024B
+          metadata:
+            response-timeout: 60000
+            connection-timeout: 5000
       default-filters:
         - SecureHeaders
         - SetResponseHeader=X-Response-Server, Blue
+      httpclient:
+        connect-timeout: 60
+        response-timeout: 5s
 server:
   port: 80
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,gateway,metrics
